@@ -14,6 +14,17 @@ aerich = "*"
 asyncpg = "*"
 
 
+
+[tool.poetry.group.dev.dependencies]
+httpx = "*"
+pytest = "*"
+ruff = "*"
+mypy = "*"
+
+[tool.aerich]
+tortoise_orm = "src.core.config.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
