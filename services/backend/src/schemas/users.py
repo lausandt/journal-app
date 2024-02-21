@@ -4,7 +4,7 @@ which creates the pydantic models for you:
 1 - User/SuperInSchema for creating new users
 2 - User/SuperOutSchema, user objects for use outside the application
 3 - User/SuperDatabaseSchema, user object for use within the application for most for validation
-4 - UserUpdate to update a user
+4 - UpdatePassword to update a user's password
 """
 from pydantic import BaseModel
 from tortoise.contrib.pydantic import pydantic_model_creator
@@ -22,6 +22,7 @@ UserInSchema = pydantic_model_creator(
                     'username': 'agent@provocateur.com',
                     'full_name': 'Agent Provocateur',
                     'password': 'string',
+                    'superuser': 'false'
                    }
             ]
         }
