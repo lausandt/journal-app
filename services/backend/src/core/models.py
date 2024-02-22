@@ -20,7 +20,7 @@ class Interval(str, Enum):
 class Qualification(str, Enum):
     Need: str = "Need"
     Want: str = "Want"
-    Leisure: str = "Leasure"
+    Leisure: str = "Leisure"
     Unexpected: str = "Unexpected"
 
 
@@ -48,19 +48,17 @@ class Period(models.Model):
     class Meta:
         table = "periods"
 
-
+# take null values out
 class Entry(models.Model):
     id = fields.IntField(pk=True)
     title = fields.CharField(max_length=225)
-    amount = fields.DecimalField(max_digits=10, decimal_places=2)
-    supplier = fields.CharField(max_length=225)
-    qualification: Qualification = fields.CharEnumField(
-        Qualification, default=Qualification.Want
-    )
+    amount = fields.DecimalField(max_digits=10, decimal_places=2, null=True)
+    supplier = fields.CharField(max_length=225, null=True)
+    qualification = fields.CharEnumField(Qualification, default=Qualification.Want, max_length=25)
     note = fields.TextField()
     author: User = fields.ForeignKeyField("models.User", related_name="entries")
-    created_at = fields.DateField(auto_now_add=True)
-    modified_at = fields.DateField(auto_now=True)
+    created_at = fields.DateField()
+    # modified_at = fields.DatetimeField(auto_now=True)
 
     def __str__(self) -> str:
         return f"{self.title} {self.author.id} {self.created_at}"

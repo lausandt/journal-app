@@ -11,7 +11,7 @@ from src.schemas.entries import (
     EntryOutSchema,
     # FixedEntryInSchema,
     # FixedEntryOutSchema,
-    # UpdateEntry,
+    UpdateEntry,
     # UpdateFixedEntry,
 )
 from src.schemas.token import Status
@@ -27,11 +27,19 @@ async def create_entry(
 ): 
     return await entries.create_entry(entry=entry, user_id=current_user.id)
 
+@router.get('/view entry/{id}', response_model=EntryOutSchema)
+async def view_entry(id:int):
+    return await entries.view_entry(id=id)
+
 @router.get("/my entries", response_model=list[EntryOutSchema])
 async def get_my_entries(current_user: Annotated[User, Depends(get_current_user)]):  
     return await entries.get_my_entries(current_user.id)
 
-@router.delete("/delete entry", response_model=Status)
+@router.patch('/update entry/{id}', response_model=EntryOutSchema)
+async def update_entry(id: int, update:UpdateEntry):
+    return await entries.update_entry(id=id, update=update)
+
+@router.delete("/delete entry/{id}", response_model=Status)
 async def remove_entry(id:int, current_user: Annotated[User, Depends(get_current_user)]):
     return await entries.remove_entry(id=id, user=current_user)
 

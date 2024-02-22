@@ -11,8 +11,7 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 from src.core.models import Entry, FixedEntry, Interval
 
 EntryInSchema = pydantic_model_creator(
-    Entry, name="EntryIn", exclude=["author_id"], exclude_readonly=True
-)
+    Entry, name="EntryIn", exclude=["author_id"], exclude_readonly=True)
 
 EntryOutSchema = pydantic_model_creator(
     Entry, name="EntryOut",
@@ -49,7 +48,7 @@ FixedEntryOutSchema = pydantic_model_creator(
 
 class UpdateEntry(BaseModel):
     title: str | None
-    content: str | None
+    note: str | None
     amount: Decimal | None
 
 
