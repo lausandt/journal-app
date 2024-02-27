@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from tortoise.exceptions import DoesNotExist
 
-from src.core.models import Entry, FixedEntry, User
+from src.core.models import Entry, User
 from src.schemas.entries import (
     EntryInSchema,
     EntryOutSchema,

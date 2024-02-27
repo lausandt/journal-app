@@ -14,26 +14,16 @@ from src.core.models import User
 UserInSchema = pydantic_model_creator(
     User,
     name='UserIn',
-    exclude_readonly=True,
-    model_config={
-        'json_schema_extra': {
-            'examples': [
-                {
-                    'username': 'agent@provocateur.com',
-                    'full_name': 'Agent Provocateur',
-                    'password': 'string',
-                    'superuser': 'false'
-                   }
-            ]
-        }
-    },
+    exclude=['created_at', 'active'],
+    exclude_readonly=True
+    
 )
 
 
 UserOutSchema = pydantic_model_creator(
     User,
-    name='UserOut',
-    exclude=['password', 'active', 'entries','fixeds', 'savings_goal', 'superuser'],
+    name='User',
+    exclude=['active', 'entries','fixeds', 'savings_goal', 'superuser'],
 )
 
 UserDatabaseSchema = pydantic_model_creator(User, name='User')

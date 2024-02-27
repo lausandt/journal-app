@@ -15,6 +15,7 @@ asyncpg = "*"
 passlib = {extras = ["bcrypt"], version = "^1.7.4"}
 python-jose = "*"
 python-multipart = "*"
+pydantic = "*"
 
 
 
@@ -24,10 +25,9 @@ pytest = "*"
 ruff = "*"
 mypy = "*"
 
+
+
 [tool.aerich]
 tortoise_orm = "src.core.config.TORTOISE_ORM"
 location = "./migrations"
 src_folder = "./."
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
